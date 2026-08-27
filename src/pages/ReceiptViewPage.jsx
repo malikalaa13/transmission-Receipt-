@@ -15,29 +15,14 @@ export default function ReceiptViewPage() {
   const [downloading, setDownloading] = useState(false);
 
   useEffect(() => {
-<<<<<<< HEAD
     Promise.all([getReceipt(id), getSettings()]).then(([r, s]) => {
-=======
-    Promise.all([
-      getReceipt(id),
-      getSettings(),
-    ]).then(([r, s]) => {
->>>>>>> e9e5f73 (Update receipt download)
       setReceipt(r);
       setSettings(s);
     });
   }, [id]);
 
   if (!receipt || !settings) {
-<<<<<<< HEAD
     return <div className="p-10 text-center">Loading…</div>;
-=======
-    return (
-      <div className="p-10 text-center">
-        Loading…
-      </div>
-    );
->>>>>>> e9e5f73 (Update receipt download)
   }
 
   const downloadPDF = async () => {
@@ -68,7 +53,6 @@ export default function ReceiptViewPage() {
       const pageHeight = pdf.internal.pageSize.getHeight();
 
       const margin = 10;
-<<<<<<< HEAD
       const availableWidth = pageWidth - margin * 2;
 
       const imageHeight =
@@ -76,16 +60,11 @@ export default function ReceiptViewPage() {
 
       let heightLeft = imageHeight;
       let position = margin;
-=======
-      const width = pageWidth - margin * 2;
-      const height = (canvas.height * width) / canvas.width;
->>>>>>> e9e5f73 (Update receipt download)
 
       pdf.addImage(
         imgData,
         'PNG',
         margin,
-<<<<<<< HEAD
         position,
         availableWidth,
         imageHeight
@@ -114,25 +93,6 @@ export default function ReceiptViewPage() {
     } catch (error) {
       console.error('PDF download failed:', error);
       alert('Unable to download PDF. Please try again.');
-=======
-        margin,
-        width,
-        height
-      );
-
-      pdf.save(
-        `receipt-${receipt.receipt_no}.pdf`
-      );
-    } catch (error) {
-      console.error(
-        'PDF generation failed:',
-        error
-      );
-
-      alert(
-        'Unable to download PDF. Please try again.'
-      );
->>>>>>> e9e5f73 (Update receipt download)
     } finally {
       setDownloading(false);
     }
@@ -157,11 +117,7 @@ export default function ReceiptViewPage() {
         <div className="flex gap-2">
           <Link
             className="btn-secondary"
-<<<<<<< HEAD
             to={`/receipts/${receipt.id}?edit=1`}
-=======
-            to={`/receipts/${receipt.id}/edit`}
->>>>>>> e9e5f73 (Update receipt download)
           >
             <Edit3 size={16} />
             Edit
@@ -182,13 +138,7 @@ export default function ReceiptViewPage() {
           >
             <Download size={16} />
 
-<<<<<<< HEAD
             {downloading ? 'Generating PDF...' : 'Download PDF'}
-=======
-            {downloading
-              ? 'Generating PDF...'
-              : 'Download PDF'}
->>>>>>> e9e5f73 (Update receipt download)
           </button>
         </div>
       </div>
@@ -201,8 +151,4 @@ export default function ReceiptViewPage() {
       </div>
     </div>
   );
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> e9e5f73 (Update receipt download)
